@@ -51,53 +51,22 @@ itemRoutes.route('/item/:id').get(async function (req, res) {
   // })
 })
 
-itemRoutes.route('/update/:id').post(function (req, res) {
-  const { description, comment, rating, imageurl, photographer, _id } = req.body
-  let tempItem = {
-    description: description,
-    comment: comment,
-    rating: rating,
-    imageurl: imageurl,
-    photographer: photographer,
-    _id: _id
-  }
+async function updateEntry(dataObj) {
+  const { description, comment, rating, imageurl, photographer, _id } = dataObj
+  const values = [description, comment, rating, imageurl, photographer, _id]
+  const query = `
+    UPDATE pernimagesaver
+    SET description= $1, comment= $2, rating= $3, imageurl= $4, photographer= $5
+    WHERE _id = $6
+    `
+  await cQuery(query, values)
+  const response = await cQuery(`SELECT * FROM pernimagesaver`)
+  return response
+}
 
-  let id = req.params.id
-
-  // sql query
-
-
-
-
-  // let firebaseID
-  // let objData
-  // // get all then match for fbID
-  // axios
-  //   .get(firebaseBranchJSON)
-  //   .then((response) => {
-  //     let dataObj = Object.entries(response.data)
-  //     dataObj.forEach(item => {
-  //       if (item[1]._id === id) {
-  //         firebaseID = item[0]
-  //       }
-  //     })
-  //   })
-  //   .then(() => {
-  //     axios
-  //     .patch(`${firebaseBranchURL}/${firebaseID}.json`, tempItem)
-  //     .catch((error) => console.log(error))
-  //     // get all again after update and display
-  //   .then(() => {
-  //     axios
-  //     .get(firebaseBranchJSON).then((response) => {
-  //       response.data && (objData = Object.values(response.data))
-  //     })
-  //     .catch((error) => console.log(error))
-  //     .finally(() => {
-  //       resAllWithMessage('Successfully updated!', res, objData)
-  //     })
-  //   })
-  // })
+itemRoutes.route('/update/:id').post(async function (req, res) {
+  const response = await updateEntry(req.body)
+  res.send(response)
 })
 
 async function insertEntry(dataObj) {

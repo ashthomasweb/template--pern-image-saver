@@ -32,8 +32,8 @@ function EditItem(props) {
   function onSubmit(e) {
     e.preventDefault()
     axios.post(`${serverURL}/update/${id}`, tempItem).then((response) => {
-      let objData = Object.values(response.data)
-      dispatch({ type: 'SET_ALL_ITEMS', payload: objData[1] })
+      let objData = response.data.rows
+      dispatch({ type: 'SET_ALL_ITEMS', payload: objData })
     })
   }
 
