@@ -1,8 +1,10 @@
-# FERN Architecture 1
+# PERN Architecture 1
 
-Firebase Realtime Database
+PostgreSQL Local 
+ElephantSQL
 Mongoose
 Node
+node-postgres ('pg')
 Express
 Axios
 React 
@@ -22,8 +24,7 @@ Makes use of conditional rendering to create multi-pane display.
 
 HOC wrapper provides params.
 
-Custom Hooks make axios requests with useEffect to replace lifecycle method.
+Custom Hooks make axios requests with useEffect to simulate lifecycle method.
 
 Reducer and Context provided in <MainState /> component wrapper.
 
-Server redirects to 'getAll' route with custom message handler.
