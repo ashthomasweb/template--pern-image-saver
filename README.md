@@ -2,7 +2,6 @@
 
 PostgreSQL Local 
 ElephantSQL
-Mongoose
 Node
 node-postgres ('pg')
 Express
