@@ -1,12 +1,14 @@
+// item-list.component
+
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { MainContext } from '../../context/main/MainState'
-import { useAxiosOnLoad } from '../../utils/axios-utils'
+import { useAxiosOnLoad } from '../../utils/custom-hooks'
 import axios from 'axios'
 import { withRoutedProps } from '../../hocs/hocs'
 const serverURL = process.env.REACT_APP_SERVER_URL
 
-// individual data item component to be .map() into by parent component ItemList, defined below
+// individual data item component, .map() into by parent component ItemList
 const Item = (props) => {
   const { dispatch } = useContext(MainContext)
   let item = props.item
@@ -38,9 +40,11 @@ const Item = (props) => {
         {item.rating}
       </td>
       <td>
+        {/* this causes a re-render in the topDisplayPane in the App component */}
         <Link to={'/item/' + item._id}>Edit</Link>
       </td>
       <td>
+        {/* this causes a re-render on the current page */}
         <button onClick={() => deleteItem()}>Remove</button>
       </td>
     </tr>
@@ -55,7 +59,7 @@ function ItemsList(props) {
 
   function itemList() {
     if ( items ) {
-      let itemCopy = [...items].reverse()
+      let itemCopy = [...items].reverse() // display most recent at top of list
       return itemCopy.map((itemData, i) => <Item {...props} item={itemData} key={i} />)
     }
   }

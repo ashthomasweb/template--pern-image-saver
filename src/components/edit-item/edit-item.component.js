@@ -1,7 +1,9 @@
+// edit-item.component
+
 import React, { useContext } from 'react'
 import axios from 'axios'
 import { withRoutedProps } from '../../hocs/hocs'
-import { useAxiosOnEditLoad } from '../../utils/axios-utils'
+import { useAxiosOnEditLoad } from '../../utils/custom-hooks'
 import { MainContext } from '../../context/main/MainState'
 const serverURL = process.env.REACT_APP_SERVER_URL
 
@@ -44,7 +46,7 @@ function EditItem(props) {
     <div style={{ margin: '10px auto', width: '95vw' }}>
       <h3 style={{ textAlign: 'center' }}>Update Item</h3>
 
-      { imageurl && 
+      { imageurl &&
           <div style={{ textAlign: 'center', width: '40vw', margin: '0 auto', position: 'relative'}}>
             <img src={imageurl} style={{width: '100%', position: 'relative'}} alt='no alt yet'/>
             <p>Photo by {photographer}, courtesy of Unsplash API</p>

@@ -1,3 +1,5 @@
+// MainState.js
+
 import { createContext, useReducer } from 'react'
 import { mainReducer } from './MainReducer'
 
@@ -12,8 +14,7 @@ const MainState = (props) => {
       comment: '',
       rating: '',
       imageurl: '',
-      photographer: '',
-      
+      photographer: ''
     },
   }
 

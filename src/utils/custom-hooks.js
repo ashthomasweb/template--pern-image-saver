@@ -1,15 +1,16 @@
-import { useContext, useEffect } from 'react'
-import axios from 'axios'
+// custom-hooks.js
 
+import { useContext, useEffect } from 'react'
 import { MainContext } from '../context/main/MainState'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+const serverURL = process.env.REACT_APP_SERVER_URL
 
-// from items-list
+// to: /items-list-component
 export async function useAxiosOnLoad() {
   const { dispatch } = useContext(MainContext)
-
   useEffect(() => {
-    axios.get('http://localhost:4000/').then((response) => {
+    axios.get(serverURL).then((response) => {
         let objData = response.data.rows
         dispatch({ type: 'SET_ALL_ITEMS', payload: objData })
       })
@@ -17,11 +18,7 @@ export async function useAxiosOnLoad() {
   }, [dispatch])
 } 
 
-// app.get('/routeNameTemplate', async (req, res) => {
-//   const response = await cQuery(``)
-//   res.send(response)
-// })
-
+// to: /edit-item-component
 export function useAxiosOnEditLoad() {
   const { state: { items }, dispatch } = useContext(MainContext)
   let { id } = useParams()

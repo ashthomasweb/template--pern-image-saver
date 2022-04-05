@@ -1,3 +1,5 @@
+// create-item.component
+
 import React, { useContext, useEffect } from 'react'
 import axios from 'axios'
 import { MainContext } from '../../context/main/MainState'
@@ -45,7 +47,6 @@ function CreateItem(props) {
   // data handling
   function onSubmit(e) {
     e.preventDefault()
-    // send form data to server 'create' route
     createItemWithUID(tempItem)
     axios.post(`${serverURL}/add`, tempItem).then((response) => {
       let objData = response.data.rows
@@ -153,9 +154,10 @@ function CreateItem(props) {
           />
           <button
             type='button'
+            style={{marginLeft: '10px'}}
             className='btn btn-primary'
             onClick={() => imageRetrieval()}
-          >Image</button>
+          >Get New Image</button>
         </div>
       </form>
     </div>

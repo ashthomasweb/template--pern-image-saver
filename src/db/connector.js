@@ -1,7 +1,7 @@
+// connector.js
+
 require('dotenv').config()
-
 const pg = require('pg')
-
 const { Client } = pg
 
 async function cQuery(input, params) {
@@ -15,7 +15,8 @@ async function cQuery(input, params) {
 module.exports = cQuery
 
 // sql command for creating appropriate table
-// _id must be passed as string
+// note: _id must be passed as string
+// 
 //   const query = `CREATE TABLE pernimagesaver
 //         ( 
 //           description varchar(255), 

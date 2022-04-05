@@ -1,3 +1,5 @@
+// sqlqueries.js
+
 const updateByID = `
     UPDATE pernimagesaver
     SET description= $1, comment= $2, rating= $3, imageurl= $4, photographer= $5

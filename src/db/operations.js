@@ -1,3 +1,5 @@
+// operations.js
+
 const cQuery = require('./connector.js')
 const sqlCommands = require('./sqlqueries.js')
 

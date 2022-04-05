@@ -1,5 +1,8 @@
+// MainReducer.js
+
 export const mainReducer = (state, action) => {
     switch (action.type) {
+        // first case in unused in template, just a test action
         case "TOG_NAME":
             let user = state.user === 'Ash' ? 'Dave' : 'Ash'
             return {
@@ -53,11 +56,9 @@ export const mainReducer = (state, action) => {
                 tempItem: action.payload
         }
         case "SET_RANDOM_IMAGE":
-            let data = action.payload
-            console.log(data.message)
             let tempItem2 = state.tempItem
-            tempItem2.imageurl = data.url
-            tempItem2.photographer = data.name
+            tempItem2.imageurl = action.payload.url
+            tempItem2.photographer = action.payload.name
             return {
                 ...state,
                 tempItem: tempItem2
