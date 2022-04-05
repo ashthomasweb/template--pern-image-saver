@@ -14,8 +14,8 @@ const Item = (props) => {
   function deleteItem() {
     let id = item._id
     axios.post(`${serverURL}/delete/${id}`).then((response) => {
-      let objData = Object.values(response.data)
-      dispatch({ type: 'SET_ALL_ITEMS', payload: objData[1] })
+      let objData = response.data.rows
+      dispatch({ type: 'SET_ALL_ITEMS', payload: objData })
       props.nav('/')
     })
   }
@@ -54,7 +54,10 @@ function ItemsList(props) {
   const { state: { items } } = useContext(MainContext)
 
   function itemList() {
-    return items && items.map((itemData, i) => <Item {...props} item={itemData} key={i} />)
+    if ( items ) {
+      let itemCopy = [...items].reverse()
+      return itemCopy.map((itemData, i) => <Item {...props} item={itemData} key={i} />)
+    }
   }
 
   return (
