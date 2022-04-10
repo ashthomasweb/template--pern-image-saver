@@ -10,7 +10,7 @@ const bodyParser = require('body-parser')
 const { default: axios } = require('axios')
 const imgKey = process.env.UNSPLASH_API_KEY
 const port = process.env.PORT || 4000
-const dbOp = require('./src/db/operations.js')
+const dbOp = require('./db/operations.js')
 
 app.use(express.static(path.join(__dirname, 'build')))
 app.use(cors())
